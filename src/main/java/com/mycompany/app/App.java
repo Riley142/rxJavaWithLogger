@@ -24,8 +24,6 @@ public class App {
         return null;
     }
 
-
-
     public static void main(String[] args) {
 
         GuitarObservable guitarObs = new GuitarObservable();
