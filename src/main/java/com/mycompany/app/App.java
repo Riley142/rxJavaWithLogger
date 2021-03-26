@@ -10,23 +10,23 @@ public class App {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-
-    public static void main(String[] args) {
-
+    public static String tryCatch(){
         int num1 = 2;
         int num2 = 0;
-//
-//        LOGGER.info("Logger Name: "+LOGGER.getName());
-//        LOGGER.warn("some warning");
-//        LOGGER.error("severe");
-//        try{
-//            LOGGER.info("Attempting to do some math");
-//            int result = num1 / num2;
-//            LOGGER.info("Result is " + result);
-//        } catch (ArithmeticException x) {
-//            LOGGER.error("Unable to divide by 0.");
-//        }
 
+        try {
+            LOGGER.info("Attempting to do some math");
+            int result = num1 / num2;
+            LOGGER.info("Result is " + result);
+        } catch(ArithmeticException x) {
+            LOGGER.error("Unable to divide by 0.");
+        }
+        return null;
+    }
+
+
+
+    public static void main(String[] args) {
 
         GuitarObservable guitarObs = new GuitarObservable();
         Observable<Guitar> guitarObserver = guitarObs.guitarObservable();
@@ -43,16 +43,9 @@ public class App {
         filmObserver.subscribe(
                 film -> LOGGER.info("Receiving data " + film.getTitle()),
 
-                error -> LOGGER.error("severe");
-        try {
-            LOGGER.info("Attempting to do some math");
-            int result = num1 / num2;
-            LOGGER.info("Result is " + result);
-        } catch (ArithmeticException x) {
-            LOGGER.error("Unable to divide by 0.");
-        }
+                error -> LOGGER.error(tryCatch()),
 
-        () -> LOGGER.info("done")
+                () -> LOGGER.info("done")
         );
     }
 }
